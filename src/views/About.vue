@@ -1,5 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>Autocahier</h1>
+    <p>Version web. Par William NORIS :)</p>
+    <p>w.noris@protonmail.com</p>
   </div>
 </template>
