@@ -22,9 +22,12 @@ Vue.config.productionTip = false;
 
 Vue.use(VeeValidate);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
+//Vue.componenet("_vm", VeeValidate);
 
 new Vue({
     router,
     store,
-    render: (h) => h(App),
+    render: function (h) {
+        return h(App);
+    },
 }).$mount("#app");

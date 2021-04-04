@@ -88,7 +88,7 @@ export default {
     methods: {
         handleLogin() {
             this.loading = true;
-            this.$validator.validateAll().then((isValid) => {
+            this.$validator.validateAll().then(function (isValid) {
                 if (!isValid) {
                     this.loading = false;
                     return;
@@ -96,10 +96,10 @@ export default {
 
                 if (this.user.username && this.user.password) {
                     this.$store.dispatch("auth/login", this.user).then(
-                        () => {
+                        function () {
                             this.$router.push("/");
                         },
-                        (error) => {
+                        function (error) {
                             this.loading = false;
                             this.message =
                                 (error.response && error.response.data) ||

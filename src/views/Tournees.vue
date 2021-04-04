@@ -18,10 +18,10 @@ export default {
     },
     mounted() {
         TourneeService.getAllTournees().then(
-            (response) => {
+            function (response) {
                 this.content = response.data;
             },
-            (error) => {
+            function (error) {
                 this.content =
                     (error.response && error.response.data) ||
                     error.message ||

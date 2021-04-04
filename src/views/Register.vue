@@ -104,14 +104,14 @@ export default {
         handleRegister() {
             this.message = "";
             this.submitted = true;
-            this.$validator.validate().then((isValid) => {
+            this.$validator.validate().then(function (isValid) {
                 if (isValid) {
                     this.$store.dispatch("auth/register", this.user).then(
-                        (data) => {
+                        function (data) {
                             this.message = data.message;
                             this.successful = true;
                         },
-                        (error) => {
+                        function (error) {
                             this.message =
                                 (error.response && error.response.data) ||
                                 error.message ||
