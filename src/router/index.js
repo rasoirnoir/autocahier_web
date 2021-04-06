@@ -45,12 +45,12 @@ const routes = [
     },
 ];
 
-const router = new VueRouter({
+export const router = new VueRouter({
     mode: "history",
     routes,
 });
 
-export default router;
+// export default router;
 
 router.beforeEach(function (to, from, next) {
     const publicPages = ["/login"];

@@ -29,3 +29,5 @@ class TourneeService {
         });
     }
 }
+
+export default TourneeService;
