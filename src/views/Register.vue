@@ -17,12 +17,12 @@
                             class="form-control"
                             name="username"
                         />
-                        <div
+                        <!-- <div
                             v-if="submitted && errors.has('username')"
                             class="alert-danger"
                         >
                             {{ errors.first("username") }}
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="form-group">
@@ -34,12 +34,12 @@
                             class="form-control"
                             name="password"
                         />
-                        <div
+                        <!-- <div
                             v-if="submitted && errors.has('password')"
                             class="alert-danger"
                         >
                             {{ errors.first("password") }}
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="form-group">
@@ -51,12 +51,12 @@
                             class="form-control"
                             name="admin"
                         />
-                        <div
+                        <!-- <div
                             v-if="submitted && errors.has('admin')"
                             class="alert-danger"
                         >
                             {{ errors.first("admin") }}
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block">

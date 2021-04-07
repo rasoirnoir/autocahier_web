@@ -16,13 +16,13 @@
                         class="form-control"
                         name="username"
                     />
-                    <div
+                    <!-- <div
                         v-if="errors.has('username')"
                         class="alert alert-danger"
                         role="alert"
                     >
                         Username is required!
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -33,13 +33,13 @@
                         class="form-control"
                         name="password"
                     />
-                    <div
+                    <!-- <div
                         v-if="errors.has('password')"
                         class="alert alert-danger"
                         role="alert"
                     >
                         Password is required!
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group">
                     <button
