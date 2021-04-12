@@ -5,16 +5,33 @@ const API_URL = "http://cpincorp.ddns.net:51510/";
 class AuthService {
     login(user) {
         return axios
-            .post(API_URL + "login", {
-                name: user.username,
-                password: user.password,
+            .get(API_URL + "login", {
+                auth: {
+                    username: user.username,
+                    password: user.password,
+                },
             })
             .then(function (response) {
-                if (response.data.accessToken) {
+                console.log(
+                    `DEBUG: login response.data : ${JSON.stringify(
+                        response.data,
+                    )}`,
+                );
+                if (response.data.token) {
                     localStorage.setItem("user", JSON.stringify(response.data));
+                    //TODO Il manque une info: le statut admin de l'utilisateur qui devrait être renvoyé par l'API
+                    return response.data;
+                } else {
+                    throw new Error("Connexion error.");
                 }
+                // if(response.data.token){
 
-                return response.data;
+                //     localStorage.setItem("")
+                // }
+            })
+            .catch(function (error) {
+                //console.log(`auth.service: ${error}`);
+                throw error;
             });
     }
 

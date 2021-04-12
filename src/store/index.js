@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: {
         isAuthenticated: false,
         jsw: "",
+        //jwt: "",
     },
     mutations: {},
     actions: {},

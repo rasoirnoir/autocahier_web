@@ -6,59 +6,67 @@
                 src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
                 class="profile-img-card"
             />
-            <form name="form" @submit.prevent="handleLogin">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input
-                        v-model="user.username"
-                        v-validate="'required'"
-                        type="text"
-                        class="form-control"
-                        name="username"
-                    />
-                    <!-- <div
-                        v-if="errors.has('username')"
-                        class="alert alert-danger"
-                        role="alert"
-                    >
-                        Username is required!
-                    </div> -->
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input
-                        v-model="user.password"
-                        v-validate="'required'"
-                        type="password"
-                        class="form-control"
-                        name="password"
-                    />
-                    <!-- <div
-                        v-if="errors.has('password')"
-                        class="alert alert-danger"
-                        role="alert"
-                    >
-                        Password is required!
-                    </div> -->
-                </div>
-                <div class="form-group">
-                    <button
-                        class="btn btn-primary btn-block"
-                        :disabled="loading"
-                    >
-                        <span
-                            v-show="loading"
-                            class="spinner-border spinner-border-sm"
-                        ></span>
-                        <span>Login</span>
-                    </button>
-                </div>
-                <div class="form-group">
-                    <div v-if="message" class="alert alert-danger" role="alert">
-                        {{ message }}
+            <ValidationObserver v-slot="{ handleSubmit }">
+                <form name="form" @submit.prevent="handleSubmit(handleLogin)">
+                    <div class="form-group">
+                        <ValidationProvider
+                            :rules="{ required: true }"
+                            v-slot="{ errors }"
+                            name="username"
+                        >
+                            <label for="username">Username</label>
+                            <input
+                                v-model="user.username"
+                                name="username"
+                                type="text"
+                                class="form-control"
+                            />
+                            <span>
+                                {{ errors[0] }}
+                            </span>
+                        </ValidationProvider>
                     </div>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <ValidationProvider
+                            :rules="{ required: true }"
+                            v-slot="{ errors }"
+                            name="password"
+                        >
+                            <label for="password">Password</label>
+                            <input
+                                v-model="user.password"
+                                name="password"
+                                type="password"
+                                class="form-control"
+                            />
+                            <span>
+                                {{ errors[0] }}
+                            </span>
+                        </ValidationProvider>
+                    </div>
+                    <div class="form-group">
+                        <button
+                            class="btn btn-primary btn-block"
+                            :disabled="loading"
+                        >
+                            <span
+                                v-show="loading"
+                                class="spinner-border spinner-border-sm"
+                            ></span>
+                            <span>Login</span>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <div
+                            v-if="message"
+                            class="alert alert-danger"
+                            role="alert"
+                        >
+                            {{ message }}
+                        </div>
+                    </div>
+                </form>
+            </ValidationObserver>
         </div>
     </div>
 </template>
@@ -88,27 +96,46 @@ export default {
     methods: {
         handleLogin() {
             this.loading = true;
-            this.$validator.validateAll().then(function (isValid) {
-                if (!isValid) {
-                    this.loading = false;
-                    return;
-                }
 
-                if (this.user.username && this.user.password) {
-                    this.$store.dispatch("auth/login", this.user).then(
-                        function () {
-                            this.$router.push("/");
-                        },
-                        function (error) {
-                            this.loading = false;
-                            this.message =
-                                (error.response && error.response.data) ||
-                                error.message ||
-                                error.toString();
-                        },
-                    );
-                }
-            });
+            if (this.user.username && this.user.password) {
+                // console.log(
+                //     `DEBUG: Login.vue, handleLogin(): ${this.user.username}, ${this.user.password}`,
+                // );
+                this.$store.dispatch("auth/login", this.user).then(
+                    function () {
+                        this.$router.push("/");
+                    },
+                    function (error) {
+                        this.loading = false;
+                        this.message =
+                            (error.response && error.response.data) ||
+                            error.message ||
+                            error.toString();
+                    },
+                );
+            }
+            // this.loading = true;
+            // this.$validator.validateAll().then(function (isValid) {
+            //     if (!isValid) {
+            //         this.loading = false;
+            //         return;
+            //     }
+
+            //     if (this.user.username && this.user.password) {
+            //         this.$store.dispatch("auth/login", this.user).then(
+            //             function () {
+            //                 this.$router.push("/");
+            //             },
+            //             function (error) {
+            //                 this.loading = false;
+            //                 this.message =
+            //                     (error.response && error.response.data) ||
+            //                     error.message ||
+            //                     error.toString();
+            //             },
+            //         );
+            //     }
+            // });
         },
     },
 };

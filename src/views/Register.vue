@@ -10,53 +10,53 @@
                 <div v-if="!successful">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input
-                            v-model="user.username"
-                            v-validate="'required|min:3|max:20'"
-                            type="text"
-                            class="form-control"
-                            name="username"
-                        />
-                        <!-- <div
-                            v-if="submitted && errors.has('username')"
-                            class="alert-danger"
+                        <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
                         >
-                            {{ errors.first("username") }}
-                        </div> -->
+                            <input
+                                v-model="user.username"
+                                name="username"
+                                type="text"
+                                class="form-control"
+                            />
+                            <span>
+                                {{ errors[0] }}
+                            </span>
+                        </ValidationProvider>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input
-                            v-model="user.password"
-                            v-validate="'required|min:6|max:40'"
-                            type="password"
-                            class="form-control"
-                            name="password"
-                        />
-                        <!-- <div
-                            v-if="submitted && errors.has('password')"
-                            class="alert-danger"
+                        <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
                         >
-                            {{ errors.first("password") }}
-                        </div> -->
+                            <input
+                                v-model="user.password"
+                                name="password"
+                                type="password"
+                                class="form-control"
+                            />
+                            <span>
+                                {{ errors[0] }}
+                            </span>
+                        </ValidationProvider>
                     </div>
 
                     <div class="form-group">
                         <label for="admin">admin</label>
-                        <input
-                            v-model="user.admin"
-                            v-validate="'required'"
-                            type="checkbox"
-                            class="form-control"
-                            name="admin"
-                        />
-                        <!-- <div
-                            v-if="submitted && errors.has('admin')"
-                            class="alert-danger"
-                        >
-                            {{ errors.first("admin") }}
-                        </div> -->
+                        <ValidationProvider v-slot="{ errors }">
+                            <input
+                                v-model="user.admin"
+                                name="admin"
+                                type="checkbox"
+                                class="form-control"
+                            />
+                            <span>
+                                {{ errors[0] }}
+                            </span>
+                        </ValidationProvider>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block">

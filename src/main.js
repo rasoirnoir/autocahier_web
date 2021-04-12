@@ -5,7 +5,14 @@ import { router } from "./router";
 import store from "./store";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import * as VeeValidate from "vee-validate";
+//import * as VeeValidate from "vee-validate";
+import {
+    // defineRule,
+    ValidationProvider,
+    extend,
+    ValidationObserver,
+} from "vee-validate";
+import { required } from "vee-validate/dist/rules";
 import Vuex from "vuex";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -21,10 +28,18 @@ library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
 
 Vue.config.productionTip = false;
 
-Vue.use(VeeValidate);
+// Vue.use(VeeValidate);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component("ValidationProvider", ValidationProvider);
+Vue.component("ValidationObserver", ValidationObserver);
 
 Vue.use(Vuex);
+
+//Form validation. Règles à appliquer sur les pages de login et register
+extend("required", {
+    ...required,
+    message: "This field is required.",
+});
 
 new Vue({
     router,
