@@ -12,17 +12,29 @@ class AuthService {
                 },
             })
             .then(function (response) {
-                console.log(
-                    `DEBUG: login response.data : ${JSON.stringify(
-                        response.data,
-                    )}`,
-                );
                 if (response.data.token) {
-                    localStorage.setItem("user", JSON.stringify(response.data));
-                    //TODO Il manque une info: le statut admin de l'utilisateur qui devrait être renvoyé par l'API
-                    return response.data;
+                    console.log(
+                        `Utilisateur : ${JSON.stringify(response.data.user)}`,
+                    );
+                    console.log(
+                        `Token : ${JSON.stringify(response.data.token)}`,
+                    );
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify(response.data.user),
+                    );
+                    localStorage.setItem(
+                        "token",
+                        JSON.stringify(response.data.token),
+                    );
+                    return response.data.user;
                 } else {
-                    throw new Error("Connexion error.");
+                    console.log(
+                        `Login did not get a token : ${JSON.stringify(
+                            response.data,
+                        )}`,
+                    );
+                    throw new Error("Wrong login or password.");
                 }
                 // if(response.data.token){
 
