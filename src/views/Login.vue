@@ -98,12 +98,11 @@ export default {
             this.loading = true;
 
             if (this.user.username && this.user.password) {
-                // console.log(
-                //     `DEBUG: Login.vue, handleLogin(): ${this.user.username}, ${this.user.password}`,
-                // );
+                let localRouter = this.$router;
                 this.$store.dispatch("auth/login", this.user).then(
                     function () {
-                        this.$router.push("/");
+                        //this.$router.push("Home");
+                        localRouter.push("/");
                     },
                     function (error) {
                         this.loading = false;
@@ -114,28 +113,6 @@ export default {
                     },
                 );
             }
-            // this.loading = true;
-            // this.$validator.validateAll().then(function (isValid) {
-            //     if (!isValid) {
-            //         this.loading = false;
-            //         return;
-            //     }
-
-            //     if (this.user.username && this.user.password) {
-            //         this.$store.dispatch("auth/login", this.user).then(
-            //             function () {
-            //                 this.$router.push("/");
-            //             },
-            //             function (error) {
-            //                 this.loading = false;
-            //                 this.message =
-            //                     (error.response && error.response.data) ||
-            //                     error.message ||
-            //                     error.toString();
-            //             },
-            //         );
-            //     }
-            // });
         },
     },
 };

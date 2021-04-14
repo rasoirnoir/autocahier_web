@@ -27,12 +27,10 @@ class AuthService {
                         "token",
                         JSON.stringify(response.data.token),
                     );
-                    return response.data.user;
+                    return response.data;
                 } else {
                     console.log(
-                        `Login did not get a token : ${JSON.stringify(
-                            response.data,
-                        )}`,
+                        `No token returned. ${JSON.stringify(response.data)}`,
                     );
                     throw new Error("Wrong login or password.");
                 }
@@ -49,6 +47,7 @@ class AuthService {
 
     logout() {
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
     }
 
     register(user) {
