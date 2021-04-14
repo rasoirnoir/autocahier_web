@@ -98,13 +98,12 @@ export default {
             this.loading = true;
 
             if (this.user.username && this.user.password) {
-                let localRouter = this.$router;
+                // let localRouter = this.$router;
                 this.$store.dispatch("auth/login", this.user).then(
-                    function () {
-                        //this.$router.push("Home");
-                        localRouter.push("/");
+                    () => {
+                        this.$router.push("/");
                     },
-                    function (error) {
+                    (error) => {
                         this.loading = false;
                         this.message =
                             (error.response && error.response.data) ||

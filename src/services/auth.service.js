@@ -11,7 +11,7 @@ class AuthService {
                     password: user.password,
                 },
             })
-            .then(function (response) {
+            .then((response) => {
                 if (response.data.token) {
                     console.log(
                         `Utilisateur : ${JSON.stringify(response.data.user)}`,
@@ -39,7 +39,7 @@ class AuthService {
                 //     localStorage.setItem("")
                 // }
             })
-            .catch(function (error) {
+            .catch((error) => {
                 //console.log(`auth.service: ${error}`);
                 throw error;
             });

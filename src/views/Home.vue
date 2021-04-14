@@ -36,13 +36,11 @@ export default {
     },
     mounted() {
         console.log("HOME MOUNTED");
-        Vue.axios
-            .get("http://cpincorp.ddns.net:51510")
-            .then(function (response) {
-                this.apiResponse = response.data.message;
-                console.log(response);
-            });
-        // this.fetchAPI();
+        console.log(this.apiResponse);
+        Vue.axios.get("http://cpincorp.ddns.net:51510").then((response) => {
+            this.apiResponse = response.data.message;
+            console.log(response);
+        });
     },
 };
 </script>
