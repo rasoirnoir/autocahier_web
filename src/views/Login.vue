@@ -111,11 +111,6 @@ export default {
                                 this.message = "unknown error.";
                             }
                         }
-
-                        // this.message =
-                        //     (error.response && error.response.data) ||
-                        //     error.message ||
-                        //     error.toString();
                     },
                 );
             }

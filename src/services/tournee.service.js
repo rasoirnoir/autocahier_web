@@ -8,25 +8,28 @@ class TourneeService {
         return axios.get(API_URL + "/tournee", { headers: authHeader() });
     }
     static getInfosTournee(id) {
-        return axios.get(API_URL + "/" + id, { header: authHeader() });
+        return axios.get(API_URL + "/tournee/" + id, { header: authHeader() });
     }
     static createTournee(id) {
-        return axios.post(API_URL, { headers: authHeader(), numero: id });
+        return axios.post(API_URL + "/tournee", {
+            headers: authHeader(),
+            numero: id,
+        });
     }
     static updateTournee(id, date_crea, date_maj) {
-        return axios.put(API_URL + "/" + id, {
+        return axios.put(API_URL + "/tournee/" + id, {
             header: authHeader(),
             date_crea: date_crea,
             date_maj: date_maj,
         });
     }
     static deleteTournee(id) {
-        return axios.delete(API_URL + "/" + id, {
+        return axios.delete(API_URL + "/tournee/" + id, {
             headers: authHeader(),
         });
     }
     static getPdisTournee(id) {
-        return axios.get(API_URL + "/" + id + "/pdis", {
+        return axios.get(API_URL + "/tournee/" + id + "/pdis", {
             headers: authHeader(),
         });
     }

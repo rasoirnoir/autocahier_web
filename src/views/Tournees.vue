@@ -17,17 +17,24 @@ export default {
         };
     },
     mounted() {
+        console.log("Tournees Mounted() start");
         TourneeService.getAllTournees().then(
             (response) => {
-                this.content = response.data;
+                console.log(
+                    `récupération de la liste des tournées : ${response.data}`,
+                );
+                this.content = response.data
+                    ? response.data
+                    : "Aucune tournée.";
             },
-            function (error) {
+            (error) => {
                 this.content =
                     (error.response && error.response.data) ||
                     error.message ||
                     error.toString();
             },
         );
+        console.log("Tournees Mounted() finished");
     },
 };
 </script>
