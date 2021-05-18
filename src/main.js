@@ -41,7 +41,9 @@ extend("required", {
     message: "This field is required.",
 });
 
-new Vue({
+Vue.prototype.$API_URL = "http://cpincorp.ddns.net:51510";
+
+const appli = new Vue({
     router,
     store,
     render: function (h) {

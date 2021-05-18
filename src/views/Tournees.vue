@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <header class="jumbotron">
-            <h3>{{ content }}</h3>
+            <p>{{ content }}</p>
         </header>
     </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     },
     mounted() {
         TourneeService.getAllTournees().then(
-            function (response) {
+            (response) => {
                 this.content = response.data;
             },
             function (error) {

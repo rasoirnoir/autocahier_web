@@ -98,17 +98,24 @@ export default {
             this.loading = true;
 
             if (this.user.username && this.user.password) {
-                // let localRouter = this.$router;
                 this.$store.dispatch("auth/login", this.user).then(
                     () => {
                         this.$router.push("/");
                     },
                     (error) => {
                         this.loading = false;
-                        this.message =
-                            (error.response && error.response.data) ||
-                            error.message ||
-                            error.toString();
+                        if (error.response) {
+                            if (error.response.status == "500") {
+                                this.message = error.response.statusText;
+                            } else {
+                                this.message = "unknown error.";
+                            }
+                        }
+
+                        // this.message =
+                        //     (error.response && error.response.data) ||
+                        //     error.message ||
+                        //     error.toString();
                     },
                 );
             }

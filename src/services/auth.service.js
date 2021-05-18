@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const API_URL = "http://cpincorp.ddns.net:51510/";
+// const PORT = 51510; //5000 en local
+// // const API_URL = `http://192.168.1.96:${PORT}/`;
+// // const API_URL = `http://127.0.0.1:5000/`;
+const API_URL = `http://cpincorp.ddns.net:51510/`;
 
 class AuthService {
     login(user) {

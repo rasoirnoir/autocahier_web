@@ -33,6 +33,8 @@ class PdiService {
         });
     }
     deletePdi(id) {
-        return axios.delete(API_URL + "/" + id, { headers: authHeader() });
+        return axios.delete(API_URL + "/" + id, {
+            headers: authHeader(),
+        });
     }
 }
