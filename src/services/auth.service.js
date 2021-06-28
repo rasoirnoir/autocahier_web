@@ -28,7 +28,8 @@ class AuthService {
                     );
                     localStorage.setItem(
                         "token",
-                        JSON.stringify(response.data.token),
+                        // JSON.stringify(response.data.token),
+                        response.data.token,
                     );
                     return response.data;
                 } else {

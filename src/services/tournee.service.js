@@ -5,7 +5,12 @@ const API_URL = `http://cpincorp.ddns.net:51510/`;
 
 class TourneeService {
     static getAllTournees() {
-        return axios.get(API_URL + "/tournee", { headers: authHeader() });
+        console.log(
+            `getAllTournees() : header : ${JSON.stringify(authHeader())}`,
+        );
+        return axios.get(API_URL + "/tournee", {
+            headers: authHeader(),
+        });
     }
     static getInfosTournee(id) {
         return axios.get(API_URL + "/tournee/" + id, { header: authHeader() });

@@ -21,7 +21,9 @@ export default {
         TourneeService.getAllTournees().then(
             (response) => {
                 console.log(
-                    `récupération de la liste des tournées : ${response.data}`,
+                    `récupération de la liste des tournées : ${JSON.stringify(
+                        response.data,
+                    )}`,
                 );
                 this.content = response.data
                     ? response.data
